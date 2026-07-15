@@ -1,4 +1,4 @@
-<h1 align="center">🩺 Auditeur de durcissement de contrôleur de domaine</h1>
+<h1 align="center">Auditeur de durcissement de contrôleur de domaine</h1>
 
 <p align="center">
   <em>Un script PowerShell qui audite un contrôleur de domaine Active Directory, attribue une note de sécurité et génère un rapport HTML avec les corrections à appliquer.</em>
@@ -13,34 +13,34 @@
 
 ---
 
-## 📝 En bref
+## En bref
 
 `Audit-DCHardening.ps1` est un **vrai script PowerShell** (pas un générateur) qui exécute une série de **contrôles de sécurité** sur un contrôleur de domaine Windows Server. Chaque point de contrôle reçoit une **criticité** (Critique / Élevée / Moyenne / Faible), l'outil calcule un **score de durcissement pondéré**, puis produit un **rapport HTML** listant, pour chaque non-conformité, la **procédure de correction** (commande PowerShell et/ou chemin de GPO).
 
 C'est l'outil idéal pour objectiver l'état de sécurité d'un AD, prioriser les actions et documenter une démarche de durcissement.
 
-## ✨ Ce que le script vérifie
+## Ce que le script vérifie
 
 Près de **40 contrôles** répartis en **8 catégories** :
 
 | Catégorie | Exemples de contrôles |
 |-----------|------------------------|
-| 🔑 **Politique de mots de passe** | Longueur minimale, complexité, historique, seuil de verrouillage, âge du compte `krbtgt` |
-| 🕰️ **Protocoles legacy** | SMBv1, LLMNR, NetBIOS, signature SMB, spouleur d'impression |
-| 🔐 **LDAP / Kerberos** | Signature LDAP, channel binding, chiffrements Kerberos faibles, restriction NTLM, accès anonyme |
-| 👑 **Comptes privilégiés** | Compte Invité, taille de Domain Admins, Protected Users, LAPS, corbeille AD |
-| 📋 **Audit et journalisation** | Stratégies d'audit avancées, taille du journal de sécurité, journalisation des ouvertures de session et des comptes |
-| 🌐 **Réseau et services** | Pare-feu Windows, NLA (RDP), WinRM HTTPS, source de temps NTP, mises à jour DNS sécurisées |
-| 🏛️ **Infrastructure AD** | Niveau fonctionnel du domaine, GPO des contrôleurs, permissions SYSVOL/NETLOGON |
-| 🛡️ **Durcissement système & endpoint** | LSA Protection (RunAsPPL), Defender, AppLocker, services superflus, WSUS, BitLocker |
+| **Politique de mots de passe** | Longueur minimale, complexité, historique, seuil de verrouillage, âge du compte `krbtgt` |
+| **Protocoles legacy** | SMBv1, LLMNR, NetBIOS, signature SMB, spouleur d'impression |
+| **LDAP / Kerberos** | Signature LDAP, channel binding, chiffrements Kerberos faibles, restriction NTLM, accès anonyme |
+| **Comptes privilégiés** | Compte Invité, taille de Domain Admins, Protected Users, LAPS, corbeille AD |
+| **Audit et journalisation** | Stratégies d'audit avancées, taille du journal de sécurité, journalisation des ouvertures de session et des comptes |
+| **Réseau et services** | Pare-feu Windows, NLA (RDP), WinRM HTTPS, source de temps NTP, mises à jour DNS sécurisées |
+| **Infrastructure AD** | Niveau fonctionnel du domaine, GPO des contrôleurs, permissions SYSVOL/NETLOGON |
+| **Durcissement système & endpoint** | LSA Protection (RunAsPPL), Defender, AppLocker, services superflus, WSUS, BitLocker |
 
-## ✅ Prérequis
+## Prérequis
 
 - Un **contrôleur de domaine** Windows Server (ou un poste avec le module **ActiveDirectory** RSAT et les droits suffisants).
 - **PowerShell 5.1** ou supérieur.
 - Exécution en tant qu'**administrateur** (le script propose une **auto-élévation UAC** au lancement).
 
-## 🚀 Guide d'utilisation pas à pas
+## Guide d'utilisation pas à pas
 
 1. **Téléchargez** `Audit-DCHardening.ps1` sur le contrôleur de domaine.
 2. Clic droit sur le fichier → **« Exécuter avec PowerShell »**. Le script se **relance automatiquement en administrateur** (acceptez l'invite UAC).
@@ -55,9 +55,9 @@ Près de **40 contrôles** répartis en **8 catégories** :
 | `-OutputPath` | Dossier de sortie du rapport | `.\Audit-DCHardening.ps1 -OutputPath "C:\Audit"` |
 | `-OpenReport` | Ouvre le rapport automatiquement à la fin | `.\Audit-DCHardening.ps1 -OpenReport` |
 
-## ⚠️ Avertissement
+## Avertissement
 
-Cet outil est **en lecture seule** : il **audite** mais ne modifie rien sur le système. Les corrections proposées, elles, changent la configuration — appliquez-les avec discernement et **testez en environnement de laboratoire** avant la production. Conçu à des fins **pédagogiques** (TP AD / durcissement).
+Cet outil est **en lecture seule** : il **audite** mais ne modifie rien sur le système. Les corrections proposées, elles, changent la configuration : appliquez-les avec discernement et **testez en environnement de laboratoire** avant la production. Conçu à des fins **pédagogiques** (TP AD / durcissement).
 
 ---
 
